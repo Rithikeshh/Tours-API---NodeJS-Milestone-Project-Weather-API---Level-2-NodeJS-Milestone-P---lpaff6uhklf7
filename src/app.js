@@ -6,11 +6,9 @@ const app = express();
 app.use(express.json());
 
 const tourDetails = JSON.parse(fs.readFileSync(`${__dirname}/data/tours.json`));
-console.log(tourDetails);
 app.get('/tours', (req, res) => {
   //write a code here to get all the tours from tours.json
   res.status(200).json({
-    "status":200,
     "message": "Success",
     "data": tourDetails
   })
@@ -28,7 +26,6 @@ app.post('/tours', (req, res) => {
       JSON.stringify(tourDetails),
       (err)=>{
         res.status(200).json({
-          "Status": 200,
           "message": "Tour added successfully"
         })
       }
@@ -55,14 +52,13 @@ app.put('/tours/:id', (req, res) => {
       JSON.stringify(tourDetails),
       (err)=>{
         res.status(200).json({
-          "Status": 200,
           "message": "Tour updated successfully"
         })
       }
     )
   }
   else{
-    res.status(404).send({error:"Not found"})
+    res.status(404).send({"message": "Tour not found"})
   }
 });
 
@@ -80,14 +76,13 @@ app.delete('/tours/:id', (req, res) => {
       JSON.stringify(tourDetails),
       (err)=>{
         res.status(200).json({
-          "Status": 200,
           "message": "Tour deleted successfully"
         })
       }
     )
   }
   else{
-    res.status(404).send({error:"Not found"})
+    res.status(404).send({"message": "Tour not found"})
   }
 });
 
