@@ -8,10 +8,14 @@ app.use(express.json());
 const tourDetails = JSON.parse(fs.readFileSync(`${__dirname}/data/tours.json`));
 app.get('/tours', (req, res) => {
   //write a code here to get all the tours from tours.json
-  res.status(200).json({
-    "message": "Success",
-    "data": tourDetails
-  })
+  // res.status(200).json({
+  //   "message": "Success",
+  //   "data": [...tourDetails]
+  // })
+  res.status(200).json(
+    
+    [...tourDetails]
+  )
 });
 
 app.post('/tours', (req, res) => {
